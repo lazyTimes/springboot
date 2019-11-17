@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="js/vis.js"></script>
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/vis-network.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/icon.min.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/layer.js"></script>
+    <script type="text/javascript" src="js/vis.js"></script>
     <style type="text/css">
         #mynetwork {
             width: 600px;
@@ -17,48 +19,148 @@
 <body>
 
 <div id="mynetwork"></div>
-
+<i class="fa fa-star-half-o" aria-hidden="true"></i>
 
 </body>
 <script type="text/javascript">
-    // 配置选项
-    // var options = {
-    //     configure: {
-    //         enabled: true,
-    //         filter: 'nodes,edges',
-    //         container: undefined,
-    //         showButton: true
-    //     }
-    // }
+    function draw() {
+        // 配置选项
+        // var options = {
+        //     configure: {
+        //         enabled: true,
+        //         filter: 'nodes,edges',
+        //         container: undefined,
+        //         showButton: true
+        //     }
+        // }
 
-    // create an array with nodes
-    var nodes = new vis.DataSet([
-        {id: 1, label: 'Node 1'},
-        {id: 2, label: 'Node 2'},
-        {id: 3, label: 'Node 3'},
-        {id: 4, label: 'Node 4'},
-        {id: 5, label: 'Node 5'}
-    ]);
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+            {
+                id: 1, label: 'Node 1', shape: "icon",
+                icon: {
+                    face: "'Font Awesome 5 Free'",
+                    weight: "bold", // Font Awesome 5 doesn't work properly unless bold.
+                    code: "\uf0c0",
+                    size: 50,
+                    color: "#57169a"
+                }
+            },
+            {id: 2, label: 'Node 2', image: 'image/time.jpg'},
+            {id: 3, label: 'Node 3'},
+            {id: 4, label: 'Node 4'},
+            {id: 5, label: 'Node 5'}
+        ]);
 
-    // create an array with edges
-    var edges = new vis.DataSet([
-        {from: 1, to: 3},
-        {from: 1, to: 2},
-        {from: 2, to: 4},
-        {from: 2, to: 5}
-    ]);
+        // create an array with edges
+        var edges = new vis.DataSet([
+            {from: 1, to: 3},
+            {from: 1, to: 2},
+            {from: 2, to: 4},
+            {from: 2, to: 5}
+        ]);
 
-    // create a network
-    var container = document.getElementById('mynetwork');
+        // create a network
+        var container = document.getElementById('mynetwork');
 
-    // provide the data in the vis format
-    var data = {
-        nodes: nodes,
-        edges: edges
-    };
-    var options = {};
+        var nodesFA5 = [
+            {
+                id: 1,
+                label: "User 1",
+                group: "users"
+            },
+            {
+                id: 2,
+                label: "User 2",
+                group: "users"
+            },
+            {
+                id: 3,
+                label: "Usergroup 1",
+                group: "usergroups"
+            },
+            {
+                id: 4,
+                label: "Usergroup 2",
+                group: "usergroups"
+            },
+            {
+                id: 5,
+                label: "Organisation 1",
+                shape: "icon",
+                icon: {
+                    face: "'Font Awesome 5 Free'",
+                    weight: "bold", // Font Awesome 5 doesn't work properly unless bold.
+                    code: "\uf1ad",
+                    size: 50,
+                    color: "#f0a30a"
+                }
+            }
+        ];
 
-    // initialize your network!
-    var network = new vis.Network(container, data, options);
+        // provide the data in the vis format
+        var data = {
+            nodes: nodesFA5,
+            edges: edges
+        };
+        var options = {};
+
+        var optionsFA4 = {
+            groups: {
+                usergroups: {
+                    shape: "icon",
+                    icon: {
+                        face: "FontAwesome",
+                        code: "\uf0c0",
+                        size: 50,
+                        color: "#57169a"
+                    }
+                },
+                users: {
+                    shape: "icon",
+                    icon: {
+                        face: "FontAwesome",
+                        code: "\uf007",
+                        size: 50,
+                        color: "#aa00ff"
+                    }
+                }
+            }
+        };
+
+        var optionsFA5 = {
+            groups: {
+                usergroups: {
+                    shape: "icon",
+                    icon: {
+                        face: "'Font Awesome 5 Free'",
+                        weight: "bold", // Font Awesome 5 doesn't work properly unless bold.
+                        code: "\uf0c0",
+                        size: 50,
+                        color: "#57169a"
+                    }
+                },
+                users: {
+                    shape: "icon",
+                    icon: {
+                        face: "'Font Awesome 5 Free'",
+                        weight: "bold", // Font Awesome 5 doesn't work properly unless bold.
+                        code: "\uf007",
+                        size: 50,
+                        color: "#aa00ff"
+                    }
+                }
+            }
+        };
+
+        // initialize your network!
+        // var network = new vis.Network(container, data, options);
+        var network = new vis.Network(container, data, optionsFA5);
+    }
+    //http://jsfiddle.net/api/post/library/pure/ 参考
+    // https://www.jianshu.com/p/b22727c8fe60 折叠展开思路
+    window.addEventListener("load", () => {
+        draw();
+    });
 </script>
 </html>
