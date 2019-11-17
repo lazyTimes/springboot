@@ -19,7 +19,7 @@ public class TestController {
     public Map<String, Object> get(){
         Map<String, Object> retMap = new HashMap<>();
         //cql语句
-        String cql = "match (m:Person{name: \"Meg Ryan\"}) return m";
+        String cql = "match (m:Tag)return m";
         Set<Map<String ,Object>> nodeList = new HashSet<>();
         neo4jUtil.getList(cql,nodeList);
         retMap.put("nodeList",nodeList);

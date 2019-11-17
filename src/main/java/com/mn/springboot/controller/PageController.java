@@ -9,4 +9,11 @@ public class PageController {
     public String index(){
         return "neo4j";
     }
+
+    @RequestMapping("mystudy")
+    public String mystudy(){
+        return "mystudy";
+    }
+
+
 }
